@@ -1,29 +1,32 @@
-<h1>New Pizza</h1>
+<div class="container my-5">
+  <h1 class="mb-4">New Pizza</h1>
 
-<%= form_with model: @pizza, local: true do |form| %>
-  <div>
-    <%= form.label :name, "Pizza Name" %>
-    <%= form.text_field :name %>
-  </div>
+  <%= form_with model: @pizza, local: true, html: { class: "card p-4 shadow" } do |form| %>
+    <div class="mb-3">
+      <%= form.label :name, "Pizza Name", class: "form-label" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
 
-  <div>
-    <h3>Select Toppings</h3>
-    <%= link_to 'Add New Topping', new_topping_path, class: 'btn btn-primary' %>
-    <p><% @toppings.each do |topping| %></p>
-      <div>
-        <%= check_box_tag 'pizza[topping_ids][]', topping.id, @pizza.toppings.include?(topping) %>
-        <%= label_tag "pizza_topping_#{topping.id}", topping.name %>
+    <div class="mb-4">
+      <h3>Select Toppings</h3>
+      <%= link_to 'Add New Topping', new_topping_path, class: 'btn btn-primary btn-sm mb-3' %>
+      <div class="form-check">
+        <% @toppings.each do |topping| %>
+          <div class="mb-1">
+            <%= check_box_tag 'pizza[topping_ids][]', topping.id, @pizza.toppings.include?(topping), class: "form-check-input" %>
+            <%= label_tag "pizza_topping_#{topping.id}", topping.name, class: "form-check-label" %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
+    </div>
 
+    <div class="d-flex justify-content-between">
+      <%= form.submit 'Create Pizza', class: "btn btn-success" %>
+
+    </div>
+  <% end %>
   <div>
-    <%= form.submit 'Create Pizza' %>
+    <%= link_to 'View all Pizzas', pizzas_path, class: 'btn btn-secondary' %>
+  <%= link_to 'Back to Home', root_path, class: 'btn btn-primary mt-3' %>
   </div>
-<% end %>
-
-<p><%= link_to 'Back to Pizzas', pizzas_path %></p>
-<%= link_to 'Back to Home', root_path, class: 'btn btn-primary' %>
-
-
-
+</div>

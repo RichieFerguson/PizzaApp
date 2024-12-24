@@ -1,17 +1,29 @@
-<h1>All Toppings</h1>
+<div class="container my-5">
+  <h1 class="mb-4">All Toppings</h1>
 
-<%= link_to 'New Topping', new_topping_path %>
+  <div class="d-flex justify-content-between mb-3">
+    <%= link_to 'New Topping', new_topping_path, class: 'btn btn-primary' %>
+    <%= link_to 'Back to Home', root_path, class: 'btn btn-secondary' %>
+  </div>
 
-<ul>
-  <% @toppings.each do |topping| %>
-    <li>
-      <%= topping.name %>
-      <%= link_to 'Edit', edit_topping_path(topping) %> |
-      <%= link_to 'Delete', topping_path(topping), method: :delete, data: { confirm: 'Are you sure?' } %>
-    </li>
-  <% end %>
-</ul>
-
-<%= link_to 'Back to Pizzas', pizzas_path %>
-<%= link_to 'Back to Home', root_path, class: 'btn btn-primary' %>
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Topping Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @toppings.each do |topping| %>
+        <tr>
+          <td><%= topping.name %></td>
+          <td>
+            <%= link_to 'Edit', edit_topping_path(topping), class: 'btn btn-warning btn-sm' %>
+            <%= link_to 'Delete', topping_path(topping), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 

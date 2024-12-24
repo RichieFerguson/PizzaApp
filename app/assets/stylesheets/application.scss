@@ -1,0 +1,89 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+ @import "bootstrap";
+
+/* Add this comment for Rails to recognize this file in SCSS */
+/*
+ *= require_self
+ *= require_tree .
+ */
+
+  /* Basic Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 20px;
+  }
+  
+  h1, h2, h3 {
+    color: #444;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+/* Universal Button Styling */
+button,
+.btn {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 8px; /* Rounded edges */
+  border: 1px solid #ccc; /* Subtle border */
+  background-color: #f8f9fa; /* Light gray background */
+  color: #212529; /* Dark text for contrast */
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  margin-bottom: 5px;
+}
+
+/* Hover Effect */
+button:hover,
+.btn:hover {
+  background-color: #e2e6ea; /* Slightly darker gray on hover */
+  border-color: #adb5bd; /* Darker border on hover */
+}
+
+/* Disabled State */
+button:disabled,
+.btn:disabled {
+  background-color: #e9ecef; /* Light gray for disabled */
+  color: #6c757d; /* Muted text */
+  border-color: #dee2e6;
+  cursor: not-allowed;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  button,
+  .btn {
+    font-size: 14px; /* Slightly smaller text on smaller screens */
+    padding: 8px 16px; /* Adjust padding for smaller screens */
+  }
+}

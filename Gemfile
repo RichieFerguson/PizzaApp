@@ -49,6 +49,11 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Gemfile
+gem 'bootstrap', '~> 5.3.0'
+gem 'sassc-rails' # Required for SCSS in Rails
+
 end
 
 group :development do

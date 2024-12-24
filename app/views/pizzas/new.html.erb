@@ -1,0 +1,29 @@
+<h1>New Pizza</h1>
+
+<%= form_with model: @pizza, local: true do |form| %>
+  <div>
+    <%= form.label :name, "Pizza Name" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <h3>Select Toppings</h3>
+    <%= link_to 'Add New Topping', new_topping_path, class: 'btn btn-primary' %>
+    <p><% @toppings.each do |topping| %></p>
+      <div>
+        <%= check_box_tag 'pizza[topping_ids][]', topping.id, @pizza.toppings.include?(topping) %>
+        <%= label_tag "pizza_topping_#{topping.id}", topping.name %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit 'Create Pizza' %>
+  </div>
+<% end %>
+
+<p><%= link_to 'Back to Pizzas', pizzas_path %></p>
+<%= link_to 'Back to Home', root_path, class: 'btn btn-primary' %>
+
+
+

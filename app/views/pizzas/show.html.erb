@@ -1,0 +1,23 @@
+<div class="container my-5">
+  <h1 class="mb-4">Pizza Details</h1>
+
+  <div class="card p-4 shadow">
+    <h2><%= @pizza.name %></h2>
+    <h3 class="mt-3">Toppings:</h3>
+    <% if @pizza.toppings.any? %>
+      <ul>
+        <% @pizza.toppings.each do |topping| %>
+          <li><%= topping.name %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No toppings added to this pizza.</p>
+    <% end %>
+  </div>
+
+  <div class="mt-4">
+    <%= link_to 'Edit Pizza', edit_pizza_path(@pizza), class: 'btn btn-warning' %>
+    <%= button_to "Delete Pizza", pizza_path(@pizza), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <%= link_to 'Back to Pizzas', pizzas_path, class: 'btn btn-secondary' %>
+  </div>
+</div>

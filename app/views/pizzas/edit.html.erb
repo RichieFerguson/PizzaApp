@@ -1,0 +1,23 @@
+<div class="container my-5">
+  <h1 class="mb-4">Edit Pizza</h1>
+
+  <%= form_with model: @pizza, local: true do |form| %>
+    <div class="mb-3">
+      <%= form.label :name, "Pizza Name", class: "form-label" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="mb-4">
+      <h3>Select Toppings</h3>
+      <% @toppings.each do |topping| %>
+        <div class="form-check mb-2">
+          <%= check_box_tag 'pizza[topping_ids][]', topping.id, @pizza.toppings.include?(topping), class: "form-check-input" %>
+          <%= label_tag "pizza_topping_#{topping.id}", topping.name, class: "form-check-label" %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= form.submit 'Update Pizza', class: "btn btn-success" %>
+    <%= link_to 'Back to Pizzas', pizzas_path, class: 'btn btn-secondary' %>
+  <% end %>
+</div>

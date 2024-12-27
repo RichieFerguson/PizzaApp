@@ -1,5 +1,7 @@
 class ToppingsController < ApplicationController
-  before_action :set_topping, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :authorize_owner!, only: [:new, :create, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @toppings = Topping.all
@@ -49,5 +51,12 @@ class ToppingsController < ApplicationController
 
   def topping_params
     params.require(:topping).permit(:name)
+  end
+
+  def authorize_owner!
+    # Use current_user (from Devise)
+    unless current_user.owner?
+      redirect_to toppings_path, alert: "You don't have permission to modify Toppings!"
+    end
   end
 end

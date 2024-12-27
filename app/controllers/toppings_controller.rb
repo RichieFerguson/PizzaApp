@@ -5,6 +5,21 @@ class ToppingsController < ApplicationController
     @toppings = Topping.all
   end
 
+  def new
+    @topping = Topping.new
+  end  
+
+  def create
+    @topping = Topping.new(topping_params)
+    if @topping.save
+      # When the Topping successfully saves, redirect wherever you like:
+      redirect_to toppings_path, notice: "Topping created successfully!"
+    else
+      # If validation fails, re-render the form
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def show
     # @topping is set by the `set_topping` method
   end
